@@ -1,12 +1,24 @@
-import React from "react";
-import logo from "./logo.svg";
+import type { User } from "./UserList";
+import { useState, useEffect } from "react";
 import "./App.css";
 
-import SignUpForm from "./SignUpForm";
+import { getUserList } from "./apis/user";
+
+import UserList from "./UserList";
 function App() {
+  const [userList, setUserList] = useState<Array<User>>([]);
+
+  const loadUserList = async () => {
+    const response = await getUserList();
+    setUserList(response);
+  };
+
+  useEffect(() => {
+    loadUserList();
+  }, []);
   return (
     <div className="App">
-      <SignUpForm />
+      <UserList userList={userList} />
     </div>
   );
 }
