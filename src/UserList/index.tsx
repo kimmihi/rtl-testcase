@@ -15,7 +15,7 @@ const UserList = ({ userList }: Props) => {
       <h2>User List</h2>
       <ul>
         {userList.map((user) => (
-          <li>
+          <li key={user.id}>
             {user.name}/{user.age}
           </li>
         ))}
