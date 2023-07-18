@@ -2,6 +2,7 @@ import type { User } from "./UserList";
 import { render, screen, waitFor } from "@testing-library/react";
 
 import App from "./App";
+import delay from "./utils/delay";
 import { getUserList } from "./apis/user";
 
 jest.mock("./apis/user");
@@ -19,6 +20,7 @@ describe("App", () => {
       ]);
     });
 
+    await delay(500);
     render(<App />);
 
     const listItem = await screen.findAllByRole("listitem");
