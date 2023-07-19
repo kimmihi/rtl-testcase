@@ -20,6 +20,25 @@ describe("TimePicker Test", () => {
     expect(min).toBeInTheDocument();
   });
 
+  test("시간 설정 후에 닫기 버튼을 클릭하면 Input창은 비어있다.", async () => {
+    render(<TimePicker />);
+
+    const input = screen.getByRole("textbox");
+
+    await user.click(input);
+
+    const closeBtn = screen.getByRole("button", { name: "닫기" });
+
+    const hour = screen.getByTestId("hour-12");
+    const min = screen.getByTestId("min-5");
+
+    await user.click(hour);
+    await user.click(min);
+    await user.click(closeBtn);
+
+    expect(input).toHaveValue("");
+  });
+
   test("시간 설정 후에 확인 버튼을 클릭하면 Input창에 설정된 시간이 출력된다.", async () => {
     render(<TimePicker />);
 
