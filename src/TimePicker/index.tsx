@@ -31,6 +31,7 @@ const TimePicker = () => {
     <section
       style={{
         position: "relative",
+        width: "300px",
       }}
     >
       <input
@@ -40,49 +41,67 @@ const TimePicker = () => {
         onChange={() => null}
       />
       {open && (
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th>시간</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Array.from({ length: 24 }).map((_, i) => (
-                <tr key={i}>
-                  <th
-                    role="button"
-                    onClick={() => handleClickHour(i)}
-                    data-testid={`hour-${i}`}
-                  >
-                    {i.toString().padStart(2, "0")}
-                  </th>
+        <div
+          style={{
+            border: "1px solid #ccc",
+            borderRadius: "16px",
+            padding: "16px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              height: "200px",
+              maxHeight: "200px",
+              overflow: "auto",
+              justifyContent: "center",
+            }}
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>시간</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          <table>
-            <thead>
-              <tr>
-                <th>분</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Array.from({ length: 60 }).map((_, i) => (
-                <tr key={i}>
-                  <th
-                    role="button"
-                    onClick={() => handleClickMin(i)}
-                    data-testid={`min-${i}`}
-                  >
-                    {i.toString().padStart(2, "0")}
-                  </th>
+              </thead>
+              <tbody>
+                {Array.from({ length: 24 }).map((_, i) => (
+                  <tr key={i}>
+                    <th
+                      role="button"
+                      onClick={() => handleClickHour(i)}
+                      data-testid={`hour-${i}`}
+                    >
+                      {i.toString().padStart(2, "0")}
+                    </th>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>분</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          <button onClick={handleClose}>닫기</button>
-          <button onClick={handleSubmit}>확인</button>
+              </thead>
+              <tbody>
+                {Array.from({ length: 60 }).map((_, i) => (
+                  <tr key={i}>
+                    <th
+                      role="button"
+                      onClick={() => handleClickMin(i)}
+                      data-testid={`min-${i}`}
+                    >
+                      {i.toString().padStart(2, "0")}
+                    </th>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <button onClick={handleClose}>닫기</button>
+            <button onClick={handleSubmit}>확인</button>
+          </div>
         </div>
       )}
     </section>
